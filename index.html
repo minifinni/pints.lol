@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Find the cheapest pint of beer near you in London. Real prices from real pubs — crowdsourced, live, updated daily.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="canonical" content="https://pints.lol">
+  <title>pints.lol — Best Cheap Pints in London | Real Pub Prices</title>
+  <meta property="og:title" content="pints.lol — Find the Cheapest Pint in London">
+  <meta property="og:description" content="Real pub prices from London. Find the best pubs, cheapest pints, and new openings near you.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pints.lol">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="pints.lol — Cheapest Pints in London">
+  <meta name="twitter:description" content="Real prices from real pubs. Find the best cheap pints near you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Lato:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- JSON-LD Structured Data: LocalBusiness & WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "pints.lol",
+    "url": "https://pints.lol",
+    "description": "Find the cheapest pint of beer near you in London. Real prices from real pubs.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://pints.lol/?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <span class="logo-text">pints<span class="logo-tld">.lol</span></span>
+      </a>
+      <nav class="header-nav">
+        <a href="#areas" class="nav-link">Browse Areas</a>
+        <a href="#leaderboard" class="nav-link">Leaderboard</a>
+        <button class="btn-submit-nav" onclick="openModal()">+ Submit Price</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">London's Pub Price Tracker</div>
+      <h1 class="hero-title">Find the cheapest pint<br /><span class="accent">near you</span></h1>
+      <p class="hero-subtitle">Real prices. Real pubs. Crowdsourced by Londoners — updated daily.</p>
+
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input"
+          placeholder="Search area — Shoreditch, Camden, SE1..." autocomplete="off" />
+        <button class="search-btn" onclick="handleSearch()">Search</button>
+      </div>
+
+      <div class="quick-areas">
+        <span class="quick-label">Popular:</span>
+        <button class="quick-tag" onclick="searchArea('Shoreditch')">Shoreditch</button>
+        <button class="quick-tag" onclick="searchArea('Camden')">Camden</button>
+        <button class="quick-tag" onclick="searchArea('Clapham')">Clapham</button>
+        <button class="quick-tag" onclick="searchArea('Brixton')">Brixton</button>
+        <button class="quick-tag" onclick="searchArea('Peckham')">Peckham</button>
+        <button class="quick-tag" onclick="searchArea('Canary Wharf')">Canary Wharf</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><span class="stat-number" id="statPubs">487</span><span class="stat-label">Pubs tracked</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number" id="statPrices">2,341</span><span class="stat-label">Prices submitted</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number">£4.49</span><span class="stat-label">Cheapest found today</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number">£6.20</span><span class="stat-label">London average</span></div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- PUB LIST -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" id="resultsTitle">All London Pubs</h2>
+          <span class="results-count" id="resultsCount"></span>
+        </div>
+        <div class="results-controls">
+          <select id="sortSelect" class="sort-select" onchange="renderPubs()">
+            <option value="price-asc">Cheapest first</option>
+            <option value="price-desc">Most expensive</option>
+            <option value="updated">Recently updated</option>
+          </select>
+          <select id="filterSelect" class="sort-select" onchange="renderPubs()">
+            <option value="all">All types</option>
+            <option value="no-spoons">No Wetherspoons</option>
+            <option value="wetherspoons">Wetherspoons only</option>
+            <option value="independent">Independents</option>
+            <option value="craft">Craft bars</option>
+          </select>
+        </div>
+      </div>
+      <div id="pubList" class="pub-list"></div>
+    </section>
+
+    <!-- AREA DIRECTORY (THE SEO GOLDMINE) -->
+    <section class="section" id="areas">
+      <h2 class="section-title">Browse by Area</h2>
+      <p class="section-sub">Find the cheapest pint in every corner of London</p>
+      <div class="area-grid" id="areaGrid"></div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="section" id="leaderboard">
+      <div class="leaderboard-grid">
+        <div class="leaderboard-card">
+          <h2 class="section-title">Cheapest Areas</h2>
+          <p class="section-sub">Where your wallet survives a night out</p>
+          <div id="cheapestAreas" class="leaderboard-list"></div>
+        </div>
+        <div class="leaderboard-card">
+          <h2 class="section-title">Most Expensive Areas</h2>
+          <p class="section-sub">Take a mortgage application</p>
+          <div id="expensiveAreas" class="leaderboard-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how-it-works">
+      <h2 class="section-title">How it works</h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Find your area</h3>
+          <p>Search by neighbourhood, street or postcode. We cover every area of London.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Compare prices</h3>
+          <p>See real pint prices sorted cheapest first. Updated by the community daily.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Submit a price</h3>
+          <p>Just had a pint? Tell us what you paid. Keeps the data fresh for everyone.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SUBMIT PRICE MODAL -->
+  <div id="submitModal" class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 class="modal-title">Submit a Pint Price</h2>
+      <p class="modal-sub">Just had a pint? Tell us what you paid.</p>
+      <form id="submitForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Pub name</label>
+          <input type="text" id="pubName" placeholder="e.g. The Fox & Anchor" required />
+        </div>
+        <div class="form-group">
+          <label>Area / Postcode</label>
+          <input type="text" id="pubArea" placeholder="e.g. Shoreditch, EC1" required />
+        </div>
+        <div class="form-group">
+          <label>Price of a pint (£)</label>
+          <input type="number" id="pintPrice" step="0.01" min="2" max="20" placeholder="e.g. 5.50" required />
+        </div>
+        <div class="form-group">
+          <label>What beer? (optional)</label>
+          <input type="text" id="beerName" placeholder="e.g. Guinness, Camden Hells" />
+        </div>
+        <button type="submit" class="btn-submit-primary">Submit Price →</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">pints.lol</div>
+      <p class="footer-sub">London's crowdsourced pub price tracker. Not affiliated with any pub chain.</p>
+      <div class="footer-links">
+        <a href="#" onclick="openModal()">Submit a price</a>
+        <a href="#areas">Browse areas</a>
+        <a href="mailto:hello@pints.lol">Contact</a>
+      </div>
+      <p class="footer-legal">© 2026 pints.lol — prices crowdsourced, not guaranteed.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

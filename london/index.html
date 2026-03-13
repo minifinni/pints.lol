@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>London Pub Directory — Find Pubs by Area | pints.lol</title>
+  <meta name="description" content="Find pubs in London by area. Real prices, honest reviews. Shoreditch, Hackney, Brixton, Peckham, Soho, and more.">
+  <meta name="robots" content="index, follow">
+  <meta name="canonical" content="https://pints.lol/london/">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">pints<span class="logo-tld">.lol</span></a>
+      <nav class="header-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/london/" class="nav-link" style="color:var(--gold);">London Areas</a>
+        <a href="/blog/" class="nav-link">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <section style="max-width:1200px;margin:0 auto;padding:3rem 1.5rem;">
+    <h1 style="font-family:var(--serif);font-size:2.5rem;font-weight:900;color:var(--cream);margin-bottom:1rem;">London Pub Directory</h1>
+    <p style="color:var(--text-secondary);font-size:1.1rem;margin-bottom:3rem;">Find pubs by London area. Real prices, honest reviews, no tourists traps.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+      
+      <a href="/london/shoreditch/" style="background:var(--surface2);border:1px solid var(--border2);padding:1.5rem;text-decoration:none;border-radius:8px;transition:transform 0.2s;">
+        <h2 style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Shoreditch & Hackney</h2>
+        <p style="color:var(--text-muted);">East London's creative hub. Craft beer, independents, locals.</p>
+        <p style="color:var(--gold);margin-top:1rem;">12 pubs →</p>
+      </a>
+
+      <a href="/london/brixton/" style="background:var(--surface2);border:1px solid var(--border2);padding:1.5rem;text-decoration:none;border-radius:8px;">
+        <h2 style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Brixton & Peckham</h2>
+        <p style="color:var(--text-muted);">South London's soul. Proper boozers, great music.</p>
+        <p style="color:var(--gold);margin-top:1rem;">8 pubs →</p>
+      </a>
+
+      <a href="/london/soho/" style="background:var(--surface2);border:1px solid var(--border2);padding:1.5rem;text-decoration:none;border-radius:8px;">
+        <h2 style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Soho & Fitzrovia</h2>
+        <p style="color:var(--text-muted);">Central London. Historic pubs, literary hangouts.</p>
+        <p style="color:var(--gold);margin-top:1rem;">15 pubs →</p>
+      </a>
+
+      <a href="/london/london-bridge/" style="background:var(--surface2);border:1px solid var(--border2);padding:1.5rem;text-decoration:none;border-radius:8px;">
+        <h2 style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">London Bridge & Bermondsey</h2>
+        <p style="color:var(--text-muted);">Thames-side drinking. River views, food pubs.</p>
+        <p style="color:var(--gold);margin-top:1rem;">10 pubs →</p>
+      </a>
+
+      <a href="/london/notting-hill/" style="background:var(--surface2);border:1px solid var(--border2);padding:1.5rem;text-decoration:none;border-radius:8px;">
+        <h2 style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Notting Hill & Shepherd's Bush</h2>
+        <p style="color:var(--text-muted);">West London. Diverse, multicultural, lived-in.</p>
+        <p style="color:var(--gold);margin-top:1rem;">9 pubs →</p>
+      </a>
+
+      <a href="/london/camden/" style="background:var(--surface2);border:1px solid var(--border2);padding:1.5rem;text-decoration:none;border-radius:8px;">
+        <h2 style="font-family:var(--serif);font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Camden & Islington</h2>
+        <p style="color:var(--text-muted);">North London. Markets, music, proper locals.</p>
+        <p style="color:var(--gold);margin-top:1rem;">14 pubs →</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- JSON-LD ItemList Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "London Pub Directory by Area",
+    "description": "Find pubs in London organized by neighborhood area",
+    "url": "https://pints.lol/london/",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Shoreditch & Hackney", "url": "https://pints.lol/london/shoreditch/"},
+      {"@type": "ListItem", "position": 2, "name": "Brixton & Peckham", "url": "https://pints.lol/london/brixton/"},
+      {"@type": "ListItem", "position": 3, "name": "Soho & Fitzrovia", "url": "https://pints.lol/london/soho/"},
+      {"@type": "ListItem", "position": 4, "name": "London Bridge & Bermondsey", "url": "https://pints.lol/london/london-bridge/"},
+      {"@type": "ListItem", "position": 5, "name": "Notting Hill & Shepherd's Bush", "url": "https://pints.lol/london/notting-hill/"},
+      {"@type": "ListItem", "position": 6, "name": "Camden & Islington", "url": "https://pints.lol/london/camden/"}
+    ]
+  }
+  </script>
+
+  <script src="../script.js"></script>
+</body>
+</html>

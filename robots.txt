@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pints.lol/sitemap.xml
